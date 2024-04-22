@@ -32,6 +32,26 @@ export const userSlice = createSlice({
                 error: true,
             };
         },
+        setActiveUserProfile(state, action: PayloadAction<number>) {
+            return {
+                ...state,
+                activeUser: action.payload,
+            };
+        },
+        setNewUserData(state, action: PayloadAction<IuserData>) {
+            return {
+                ...state,
+                allUsersList: [
+                    ...state.allUsersList.map((user) => {
+                        if (user.id === action.payload.id) {
+                            return action.payload;
+                        }
+
+                        return user;
+                    }),
+                ],
+            };
+        },
     },
 });
 

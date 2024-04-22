@@ -1,0 +1,16 @@
+.userProfileWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.headerText {
+    font-family: sans-serif;
+    margin-right: 50px;
+}
+
+.inp {
+    height: 36px;
+    width: 440px;
+    padding-left: 12px;
+}

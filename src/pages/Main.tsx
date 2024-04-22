@@ -1,20 +1,25 @@
 import { useEffect } from 'react';
 import UserList from '../components/UserList/UserList';
 import UserProfile from '../components/UserProfile/UserProfile';
-import { useAppDispatch } from '../_data/hooks/redux';
+import { useAppDispatch, useAppSelector } from '../_data/hooks/redux';
 import { fetchData } from '../_data/store/actions/dataTableActions';
+import style from './Main.module.scss';
+import { findAciveUser } from './utils';
 
 const Main = () => {
     const dispatch = useAppDispatch();
+    const { allUsersList, activeUser } = useAppSelector((store) => store.dataTable);
+
+    const activeUserData = findAciveUser(allUsersList, activeUser);
 
     useEffect(() => {
         dispatch(fetchData());
     }, []);
 
     return (
-        <div>
+        <div className={style.mainPageWrapper}>
             <UserList />
-            <UserProfile />
+            <UserProfile activeUserData={activeUserData} />
         </div>
     );
 };

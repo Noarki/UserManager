@@ -11,7 +11,7 @@ export const handlers = [
             return department.charAt(0).toUpperCase() + department.slice(1) + ' Отдел';
         };
 
-        const users = new Array(1000).fill('').map((_, id) => ({
+        const users = new Array(50).fill('').map((_, id) => ({
             id: id + 1,
             name: faker.person.firstName() + ' ' + faker.person.lastName(),
             age: new Date().getFullYear() - new Date(faker.date.birthdate()).getFullYear(),

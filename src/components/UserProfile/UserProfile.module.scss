@@ -1,0 +1,10 @@
+.userProfileMainWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.userProfileWrapper {
+    display: flex;
+    flex: row;
+    justify-content: flex-start;
+}
