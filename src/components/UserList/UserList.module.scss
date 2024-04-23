@@ -1,8 +1,6 @@
 .btnNameListWrapper {
-    width: 220px;
-    display: flex;
-    flex-direction: column;
-
+    width: 50%;
+    max-width: 300px;
     max-height: 720px;
     overflow: auto;
 }
@@ -11,15 +9,66 @@
     background: none;
     border: none;
     padding: 0;
-    margin-bottom: 6px;
+    cursor: pointer;
 }
 
 .btnNameWrapper {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    align-items: center;
+    padding: 4px 0 4px 8px;
+    cursor: pointer;
+
+    &:hover {
+        border-radius: 12px;
+        background-color: #eff4ff;
+    }
 }
 
 .icon {
     margin-right: 18px;
+    width: 14px;
+    height: 14px;
+}
+
+.btnNameListWrapper::-webkit-scrollbar {
+    width: 14px;
+    background-color: #f9f9fd;
+}
+
+.btnNameListWrapper::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+}
+
+.btnNameListWrapper::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #f9f9fd, #0307e0, #336cff);
+    background-size: 100% 100%;
+    animation: 10s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 50% 0%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 50% 0%;
+    }
+    50% {
+        background-position: 50% 100%;
+    }
+    100% {
+        background-position: 50% 0%;
+    }
 }

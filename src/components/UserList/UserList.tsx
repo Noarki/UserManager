@@ -1,5 +1,4 @@
 import { useAppDispatch, useAppSelector } from '../../_data/hooks/redux';
-import { fetchData } from '../../_data/store/actions/dataTableActions';
 import { userSlice } from '../../_data/store/redusers/dataTableReducer';
 import Button from '../Button/Button';
 
@@ -18,7 +17,7 @@ const UserList: React.FC = () => {
         <div className={style.btnNameListWrapper}>
             {allUsersList.map((userInfo) => (
                 <div className={style.btnNameWrapper} key={userInfo.id}>
-                    <img alt='??' src='' className={style.icon} />
+                    <img src='images/userIcon.svg' alt='pict' className={style.icon} />
                     <Button onClick={() => handleClick(userInfo.id)} className={style.nameBtn}>
                         {userInfo.name}
                     </Button>

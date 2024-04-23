@@ -12,6 +12,6 @@ export interface IuserData {
     email: string;
     position: string;
     department: string;
-    compaty: string;
+    company: string;
     zodiac: string;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../_data/hooks/redux';
+import { useAppDispatch } from '../../_data/hooks/redux';
 import { IuserData } from '../../_data/models/dataTable';
 import { userSlice } from '../../_data/store/redusers/dataTableReducer';
 import Button from '../Button/Button';
@@ -11,67 +11,83 @@ interface IProps {
 }
 
 const UserProfile: React.FC<IProps> = ({ activeUserData }) => {
-    const dispatch = useAppDispatch();
-
-    const handleClick = () => {
-        if (user) {
-            dispatch(userSlice.actions.setNewUserData(user));
-        }
-    };
-
+    const [isChanged, setIsChanged] = useState(false);
     const [user, setUser] = useState<IuserData>();
+
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         setUser(activeUserData);
     }, [activeUserData]);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
+    const handleClick = () => {
         if (user) {
-            console.log({ [key]: event.target.value }, key);
+            setIsChanged(false);
+            dispatch(userSlice.actions.setNewUserData(user));
+        }
+    };
 
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>, key: string) => {
+        if (!isChanged) {
+            setIsChanged(true);
+        }
+
+        if (user) {
             setUser({ ...user, [key]: event.target.value });
         }
     };
 
     return (
         <div className={style.userProfileMainWrapper}>
-            <UserDataRow headerText='Имя' userInfo={user?.name} onChange={handleChange} dataKey={'name'} />
-            <UserDataRow headerText='Возраст' userInfo={user?.age} onChange={handleChange} dataKey={'age'} />
+            <UserDataRow
+                headerText='Имя'
+                userInfo={user?.name || ''}
+                onChange={handleChange}
+                dataKey={'name'}
+            />
+            <UserDataRow
+                headerText='Возраст'
+                userInfo={user?.age || ''}
+                onChange={handleChange}
+                dataKey={'age'}
+            />
             <UserDataRow
                 headerText='Знак Зодиака'
-                userInfo={user?.zodiac}
+                userInfo={user?.zodiac || ''}
                 onChange={handleChange}
                 dataKey={'zodiac'}
             />
             <UserDataRow
                 headerText='Компания'
-                userInfo={user?.compaty}
+                userInfo={user?.company || ''}
                 onChange={handleChange}
-                dataKey={'compaty'}
+                dataKey={'company'}
             />
             <UserDataRow
                 headerText='Отдел'
-                userInfo={user?.department}
+                userInfo={user?.department || ''}
                 onChange={handleChange}
                 dataKey={'department'}
             />
             <UserDataRow
                 headerText='Должность'
-                userInfo={user?.position}
+                userInfo={user?.position || ''}
                 onChange={handleChange}
                 dataKey={'position'}
             />
             <UserDataRow
                 headerText='Электронная почта'
-                userInfo={user?.email}
+                userInfo={user?.email || ''}
                 onChange={handleChange}
                 dataKey={'email'}
             />
 
-            {activeUserData !== user && (
-                <Button className={style.safeBtn} onClick={handleClick}>
-                    {'Сохранить'}
-                </Button>
+            {isChanged && (
+                <div className={style.btnWpapper}>
+                    <Button className={style.safeBtn} onClick={handleClick}>
+                        {'Сохранить'}
+                    </Button>
+                </div>
             )}
         </div>
     );

@@ -8,3 +8,21 @@
     flex: row;
     justify-content: flex-start;
 }
+
+.btnWpapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.safeBtn {
+    border: none;
+    cursor: pointer;
+    height: 36px;
+    width: 132px;
+
+    background-color: rgb(30, 77, 222);
+    color: white;
+    font-family: sans-serif;
+    font-size: 16px;
+    border-radius: 8px;
+}
